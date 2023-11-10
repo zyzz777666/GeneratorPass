@@ -25,14 +25,10 @@ class GeneratorLetters:
         return ascii_uppercase[randint(self._start_range, self._end_range) - 1]
 
 
-class GeneratorPunctuation:
-
-    def __init__(self, start_range=0, end_range=len(punctuation)):
-        self._start_range = start_range
-        self._end_range = end_range
-
-    def get_punctuation(self):
-        return punctuation[randint(self._start_range, self._end_range) - 1]
+class GeneratorDash:
+    @staticmethod
+    def get_dash():
+        return '-'
 
 
 class GeneratorsUsersPasswords:
@@ -45,7 +41,7 @@ class GeneratorsUsersPasswords:
                 password.append(GeneratorDigit().get_generator_digit())
                 password.append(GeneratorLetters().get_uppercase_letters())
                 password.append(GeneratorLetters().get_lowercase_letters())
-                password.append(GeneratorPunctuation().get_punctuation())
+                password.append(GeneratorDash().get_dash())
 
             return ''.join(password)
 
