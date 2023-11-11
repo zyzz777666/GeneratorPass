@@ -5,7 +5,8 @@ import pyperclip as cd
 
 
 class PasswordGeneratorApp:
-    def __init__(self, root):
+
+    def __init__(self, root=None):
         self.ready_password = []
         self.root = root
         self.root.title("Password Generator")
@@ -71,5 +72,6 @@ class PasswordGeneratorApp:
     def add_uppercase_letter(self):
         self.ready_password.append(password_generator.GeneratorLetters().get_uppercase_letters())
         self.show_password()
+
 
 
