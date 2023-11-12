@@ -45,9 +45,9 @@ def insert_variable_into_table(password):
           VALUES (?)"""
 
         data_tuple = (password,)
-        cursor.execute(sqlite_insert_with_param, data_tuple,)
+        cursor.execute(sqlite_insert_with_param, data_tuple, )
         sqlite_connection.commit()
-        print("Переменные Python успешно вставлены в таблицу sqlitedb_developers")
+        print("Переменные Python успешно вставлены в таблицу passworz")
 
         cursor.close()
 
