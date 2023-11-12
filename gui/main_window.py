@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from src import password_generator
 import pyperclip as cd
+from data_base import main_bd
 
 
 class PasswordGeneratorApp:
@@ -25,6 +26,8 @@ class PasswordGeneratorApp:
                                                           command=self.add_lowercase_letter)
         self.generate_button_upper_letter = tk.Button(root, text="Add upper letter",
                                                       command=self.add_uppercase_letter)
+        self.add_password_bd_func = tk.Button(root, text="DataBase",
+                                              command=self.add_password_bd)
         self.copy_button_password = tk.Button(root, text="Copy password",
                                               command=self.copy_password)
         self.result_label = tk.Label(root, text="Generated Password:")
@@ -36,6 +39,7 @@ class PasswordGeneratorApp:
         self.generate_button_plus_digit.grid(row=5, column=0, columnspan=2, pady=10)
         self.generate_button_lowercase_letter.grid(row=6, column=0, columnspan=2, pady=10)
         self.generate_button_upper_letter.grid(row=7, column=0, columnspan=2, pady=10)
+        self.add_password_bd_func.grid(row=8, column=0, columnspan=2, pady=10)
         self.copy_button_password.grid(row=2, column=0, columnspan=2, pady=10)
         self.result_label.grid(row=1, column=0, columnspan=2, pady=10)
 
@@ -73,5 +77,5 @@ class PasswordGeneratorApp:
         self.ready_password.append(password_generator.GeneratorLetters().get_uppercase_letters())
         self.show_password()
 
-
-
+    def add_password_bd(self):
+        return main_bd.insert_variable_into_table(''.join(self.ready_password))

@@ -33,7 +33,34 @@ class ExecuteQuery:
                 print('BD close')
 
 
-sqlite_insert_with_param = f"""
-  INSERT INTO passwordz (password) 
-  VALUES (?);"""
+def insert_variable_into_table(password):
+    global sqlite_connection
+    try:
+        sqlite_connection = sqlite3.connect('sm_app.sqlite')
+        cursor = sqlite_connection.cursor()
+        print("Подключен к SQLite")
 
+        sqlite_insert_with_param = f"""
+          INSERT INTO passwordz (password) 
+          VALUES (?)"""
+
+        data_tuple = (password,)
+        cursor.execute(sqlite_insert_with_param, data_tuple,)
+        sqlite_connection.commit()
+        print("Переменные Python успешно вставлены в таблицу sqlitedb_developers")
+
+        cursor.close()
+
+    except sqlite3.Error as error:
+        print("Ошибка при работе с SQLite", error)
+    finally:
+        if sqlite_connection:
+            sqlite_connection.close()
+            print("Соединение с SQLite закрыто")
+
+
+sqlite_start = '''
+CREATE TABLE IF NOT EXISTS passwordz (
+password INT
+)
+'''
